@@ -1,4 +1,4 @@
-package student.adventure;
+package student.bruh;
 
 import static org.junit.Assert.assertThat;
 

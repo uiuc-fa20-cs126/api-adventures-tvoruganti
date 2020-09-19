@@ -1,0 +1,117 @@
+{
+  "rooms": [{
+    "room_name": "Farmhouse",
+    "person": {
+      "name": "Farmer's Wife",
+      "dialogue": "This breakfast is looking good!",
+      "guiltyDialogue": "I just collected these delicious eggs!"
+    },
+    "items": [{
+      "item_name": "Knife",
+      "isMurderWeapon": false
+    }],
+    "adjacent_rooms": ["Barn", "Silo", "Security", "Chickencoop", "Field"],
+    "possibleDirections": ["North", "South", "East", "Northeast", "Southeast"]
+  }, {
+    "room_name": "Barn",
+    "person": {
+      "name": "Farmer's Son",
+      "dialogue": "I got the most boring job again!",
+      "guiltyDialogue": "I'm just getting some wood for the fire!"
+    },
+    "items": [{
+      "item_name": "Pitchfork",
+      "isMurderWeapon": false
+    }],
+    "adjacent_rooms": ["Farmhouse", "Chickencoop", "Security"],
+    "possibleDirections": ["South", "East", "Southeast"]
+  }, {
+    "room_name": "Chickencoop",
+    "person": {
+      "name": "Farmer's Daughter",
+      "dialogue": "Don't wake up the hens while I collect their eggs!",
+      "guiltyDialogue": "Just cleaning the chicken coop!"
+    },
+    "items": [{
+      "item_name": "Egg",
+      "isMurderWeapon": false
+    }],
+    "adjacent_rooms": ["Barn", "Farmhouse", "Security", "Slaughterhouse", "Well"],
+    "possibleDirections": ["West", "Southwest", "South","East","Southeast"]
+  }, {
+    "room_name": "Slaughterhouse",
+    "person": {
+      "name": "Butcher",
+      "dialogue": "The chickens are looking good today!",
+      "guiltyDialogue": "I'm going to go get some chickens!"
+    },
+    "items": [{
+      "item_name": "Axe",
+      "isMurderWeapon": false
+    }],
+    "adjacent_rooms": ["Chickencoop", "Well", "Security"],
+    "possibleDirections": ["West", "South", "Southwest"]
+  }, {
+    "room_name": "Well",
+    "person": {
+      "name": "Neighbor",
+      "dialogue": "Just returning this bucket I borrowed!",
+      "guiltyDialogue": "I just need some water for my crops!"
+    },
+    "items": [{
+      "item_name": "Bucket",
+      "isMurderWeapon": false
+    }],
+    "adjacent_rooms": ["Slaughterhouse", "Chickencoop", "Security", "Stable", "Field"],
+    "possibleDirections": ["North", "Northwest", "West","South","Southwest"]
+  }, {
+    "room_name": "Stable",
+    "person": {
+      "name": "Horsekeeper",
+      "dialogue": "Time to groom the horses!",
+      "guiltyDialogue": "I'm taking the horses out for a bit!"
+    },
+    "items": [{
+      "item_name": "Horseshoe",
+      "isMurderWeapon": false
+    }],
+    "adjacent_rooms": ["Field", "Security", "Well"],
+    "possibleDirections": ["West", "Northwest", "North"]
+  }, {
+    "room_name": "Field",
+    "person": {
+      "name": "Farmer",
+      "dialogue": "I would harvest the crops but it's too windy!",
+      "guiltyDialogue": "Time to harvest the crops!"
+    },
+    "items": [{
+      "item_name": "Tractor",
+      "isMurderWeapon": false
+    }],
+    "adjacent_rooms": ["Stable", "Silo", "Security", "Well", "Farmhouse"],
+    "possibleDirections": ["East", "West", "North","Northeast","Northwest"]
+  }, {
+    "room_name": "Silo",
+    "person": {
+      "name": "Farmer's Assistant",
+      "dialogue": "The stored grain is ready to be sold!",
+      "guiltyDialogue": "Let's get this grain to the market!"
+    },
+    "items": [{
+      "item_name": "Multitool",
+      "isMurderWeapon": false
+    }],
+    "adjacent_rooms": ["Farmhouse", "Field", "Security"],
+    "possibleDirections": ["North", "East", "Northeast"]
+  }, {
+    "room_name": "Security",
+    "person": {
+      "name": "Security Guard",
+      "dialogue": "Have you found the weapon?",
+      "guiltyDialogue": ""
+    },
+    "items": [],
+    "adjacent_rooms": ["Farmhouse", "Field", "Stable","Barn","Chickencoop","Slaughterhouse","Silo","Well"],
+    "possibleDirections": ["West", "South", "Southeast","Northwest","North","Northeast","Southwest","East"]
+  }]
+}
