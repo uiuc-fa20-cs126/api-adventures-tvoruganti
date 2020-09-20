@@ -1,50 +1,35 @@
 package student.adventure;
 
-import com.google.gson.Gson;
-import com.oracle.javafx.jmx.json.JSONException;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import student.server.AdventureState;
+import student.server.Command;
+import student.server.GameStatus;
 
-public class  GameEngine {
+public class GameEngine {
 
-  private final Map<String, Room> roomList;
-  private final List<Item> inventory;
+  private final AdventureState startingState;
   private final String backgroundStory;
   private String currRoom;
+  private Map<String, Room> roomList;
+  private List<Item> inventory;
   private int falseGuesses;
 
   /**
-   * Initializes game and all of it's variables. Also loads JSON in.
+   * Initializes variables
    *
-   * @throws FileNotFoundException if incorrect directory is given
+   * @param directory String that represents file path
+   * @param randomize boolean that represents whether the game should randomize the murderer
    */
-  public GameEngine(String directory, boolean randomize)
-      throws FileNotFoundException, JSONException {
-    if (directory == null) {
-      throw new IllegalArgumentException();
-    }
-    roomList = new HashMap<>();
+  public GameEngine(String directory, boolean randomize) {
+    SanitizeData deserializer = new SanitizeData(directory, randomize);
+    roomList = deserializer.getRoomList();
+    currRoom = deserializer.getCurrRoom();
     inventory = new ArrayList<>();
     falseGuesses = 0;
-    currRoom = "security";
-    Gson gson = new Gson();
-    BufferedReader br = new BufferedReader(new FileReader(directory));
-    Rooms tempRMS = gson.fromJson(br, Rooms.class);
-    List<Room> rooms = tempRMS.getRooms();
-    if (randomize) { //randomizes which item and person are the murder culprits
-      int randomIndex = (int) (Math.random() * (roomList.size() - 1));
-      rooms.get(randomIndex).getPerson()
-          .setDialogue(rooms.get(randomIndex).getPerson().getGuiltyDialogue());
-      rooms.get(randomIndex).getItems().get(0).setMurderWeapon(true);
-    }
-    for (Room room : rooms) {
-      roomList.put(room.getName().toLowerCase(), room);
-    }
     //Story for the game, printed only once at beginning of the game
     backgroundStory =
         "It's a sunny summer morning. The air is humid and the ground is damp from last night's rainfall."
@@ -55,6 +40,7 @@ public class  GameEngine {
             + "\nLast night, an inspector arrived to do an annual check up to make sure all regulations were being followed."
             + "\nHe was found dead in the middle of the farm last night. All the suspects should be around the farm."
             + "\nVisit them and other locations and bring me the murder weapon. Good Luck!";
+    startingState = new AdventureState(currRoom, inventory, roomList, falseGuesses);
   }
 
   /**
@@ -220,6 +206,47 @@ public class  GameEngine {
   //returns background story of the game
   public String getBackgroundStory() {
     return backgroundStory;
+  }
+
+  //returns the Starting room
+  public AdventureState getStartingState() {
+    return startingState;
+  }
+
+  /**
+   * Executes a command
+   * @param currGameStatus Game to perform the command on
+   * @param command        Command to perform
+   * @return Game Status after performing the command.
+   */
+  public GameStatus executeCommand(GameStatus currGameStatus, Command command) {
+    AdventureState currState = currGameStatus.getState();
+    roomList = currState.getRoomList();
+    currRoom = currState.getCurrentRoom();
+    inventory = currState.getInventory();
+    falseGuesses = currState.getFalseGuesses();
+    String message = isValidCommand(command.getCommandName(), command.getCommandName());
+    AdventureState newState = new AdventureState(currRoom, inventory, roomList, falseGuesses);
+    return new GameStatus(false, currGameStatus.getId(), message, "", "",
+        newState, getCommandOptions());
+  }
+
+  /**
+   * Gets all possible commands for the current room
+   * @return Map with commands and all possible things to perform commands on
+   */
+  public Map<String, List<String>> getCommandOptions() {
+    Map<String, List<String>> commandOptions = new HashMap<>();
+    commandOptions.put("go", roomList.get(currRoom).getPossibleDirections());
+    commandOptions.put("examine", new ArrayList<>());
+    commandOptions.put("speak", new ArrayList<>());
+    List<String> win = new ArrayList<>();
+    win.add("win");
+    commandOptions.put("check", win);
+    commandOptions.put("drop", Collections.singletonList(inventory.toString()));
+    commandOptions
+        .put("take", Collections.singletonList(roomList.get(currRoom).getItems().toString()));
+    return commandOptions;
   }
 
 
