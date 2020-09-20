@@ -19,28 +19,17 @@ import student.adventure.Room;
 public class AdventureState {
 
   private String currentRoom;
-  private final List<Item> inventory;
-  private final Map<String, Room> roomList;
   private int falseGuesses;
+  private String inventory;
 
-
-  public AdventureState(String currRoom, List<Item> inv, Map<String, Room> listRooms, int fG) {
+  public AdventureState(String currRoom,  int fG, String inv) {
     currentRoom = currRoom;
-    inventory = inv;
-    roomList = listRooms;
     falseGuesses = fG;
+    inventory = inv;
   }
 
   public String getCurrentRoom() {
     return currentRoom;
-  }
-
-  public List<Item> getInventory() {
-    return inventory;
-  }
-
-  public Map<String, Room> getRoomList() {
-    return roomList;
   }
 
   public int getFalseGuesses() {

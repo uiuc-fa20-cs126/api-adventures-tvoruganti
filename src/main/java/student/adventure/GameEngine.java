@@ -12,6 +12,8 @@ import student.server.GameStatus;
 public class GameEngine {
 
   private final AdventureState startingState;
+  private final List<Item> startingInv;
+  private Map<String, Room> startingRoomList;
   private final String backgroundStory;
   private String currRoom;
   private Map<String, Room> roomList;
@@ -27,8 +29,10 @@ public class GameEngine {
   public GameEngine(String directory, boolean randomize) {
     SanitizeData deserializer = new SanitizeData(directory, randomize);
     roomList = deserializer.getRoomList();
+    startingRoomList = roomList;
     currRoom = deserializer.getCurrRoom();
     inventory = new ArrayList<>();
+    startingInv = new ArrayList<>();
     falseGuesses = 0;
     //Story for the game, printed only once at beginning of the game
     backgroundStory =
@@ -40,7 +44,7 @@ public class GameEngine {
             + "\nLast night, an inspector arrived to do an annual check up to make sure all regulations were being followed."
             + "\nHe was found dead in the middle of the farm last night. All the suspects should be around the farm."
             + "\nVisit them and other locations and bring me the murder weapon. Good Luck!";
-    startingState = new AdventureState(currRoom, inventory, roomList, falseGuesses);
+    startingState = new AdventureState(currRoom, falseGuesses, "");
   }
 
   /**
@@ -213,39 +217,62 @@ public class GameEngine {
     return startingState;
   }
 
+  public List<Item> getStartingInv() {
+    return startingInv;
+  }
+
+  public Map<String, Room> getStartingRoomList() {
+    return startingRoomList;
+  }
+
+  private List<String> listItemtoString(List<Item> items){
+    List<String> itemsToStrings = new ArrayList<>();
+    for(Item item : items){
+      itemsToStrings.add(item.getName());
+    }
+    return itemsToStrings;
+  }
+
   /**
    * Executes a command
+   *
    * @param currGameStatus Game to perform the command on
    * @param command        Command to perform
    * @return Game Status after performing the command.
    */
   public GameStatus executeCommand(GameStatus currGameStatus, Command command) {
     AdventureState currState = currGameStatus.getState();
-    roomList = currState.getRoomList();
-    currRoom = currState.getCurrentRoom();
-    inventory = currState.getInventory();
+    roomList = currGameStatus.getRoomList();
+    currRoom = currState.getCurrentRoom().toLowerCase();
+    inventory = currGameStatus.getInventory();
     falseGuesses = currState.getFalseGuesses();
-    String message = isValidCommand(command.getCommandName(), command.getCommandName());
-    AdventureState newState = new AdventureState(currRoom, inventory, roomList, falseGuesses);
+    String message = isValidCommand(command.getCommandName().toLowerCase(),
+        command.getCommandValue().toLowerCase());
+    AdventureState newState = new AdventureState(currRoom, falseGuesses, inventory.toString());
     return new GameStatus(false, currGameStatus.getId(), message, "", "",
-        newState, getCommandOptions());
+        newState, getCommandOptions(), inventory, roomList);
   }
 
   /**
    * Gets all possible commands for the current room
+   *
    * @return Map with commands and all possible things to perform commands on
    */
   public Map<String, List<String>> getCommandOptions() {
     Map<String, List<String>> commandOptions = new HashMap<>();
     commandOptions.put("go", roomList.get(currRoom).getPossibleDirections());
-    commandOptions.put("examine", new ArrayList<>());
-    commandOptions.put("speak", new ArrayList<>());
-    List<String> win = new ArrayList<>();
-    win.add("win");
-    commandOptions.put("check", win);
-    commandOptions.put("drop", Collections.singletonList(inventory.toString()));
+    List<String> emptyList = new ArrayList<>();
+    emptyList.add("");
+    commandOptions.put("examine", emptyList);
+    commandOptions.put("speak", emptyList);
+    if (currRoom.equals("security")) {
+      List<String> win = new ArrayList<>();
+      win.add("win");
+      commandOptions.put("check", win);
+    }
+    commandOptions.put("drop", listItemtoString(inventory));
     commandOptions
-        .put("take", Collections.singletonList(roomList.get(currRoom).getItems().toString()));
+        .put("take", listItemtoString(roomList.get(currRoom).getItems()));
     return commandOptions;
   }
 

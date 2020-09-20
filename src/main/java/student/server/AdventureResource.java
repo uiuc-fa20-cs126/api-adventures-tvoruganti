@@ -9,7 +9,7 @@ public class AdventureResource {
     /**
      * The single static adventure service instance used for this API.
      */
-    private static AdventureService service; // = new YourAdventureServiceHere();
+    private static AdventureService service = new MyGameService();
 
     /**
      * The API endpoint to test connectivity.
@@ -90,7 +90,6 @@ public class AdventureResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response handleCommand(@PathParam("id") int id, Command command) {
         service.executeCommand(id, command);
-
         return getGame(id);
     }
 

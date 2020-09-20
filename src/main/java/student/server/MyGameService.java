@@ -32,8 +32,9 @@ public class MyGameService implements AdventureService {
   @Override
   public int newGame() throws AdventureException {
     Map<String, List<String>> comOpts = new HashMap<>();
-    GameStatus newGame = new GameStatus(false, idCounter, engine.getBackgroundStory(), "", "",
-        engine.getStartingState(), engine.getCommandOptions());
+    GameStatus newGame = new GameStatus(false, idCounter, engine.getBackgroundStory(),
+        "", "", engine.getStartingState(), engine.getCommandOptions(), engine.getStartingInv(),
+        engine.getStartingRoomList());
     gamesList.put(idCounter, newGame);
     return idCounter++;
   }
