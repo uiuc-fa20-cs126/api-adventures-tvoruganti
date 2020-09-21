@@ -1,0 +1,27 @@
+{
+  "backgroundStory" : "nothing",
+  "rooms": [{
+    "room_name": "Silo",
+    "person": {
+      "name": "Farmer's Assistant",
+      "dialogue": "The stored grain is ready to be sold!",
+      "guiltyDialogue": "Let's get this grain to the market!"
+    },
+    "items": [],
+    "adjacent_rooms": ["Security"],
+    "possibleDirections": ["Northeast"]
+  }, {
+    "room_name": "Security",
+    "person": {
+      "name": "Security Guard",
+      "dialogue": "Have you found the weapon?",
+      "guiltyDialogue": ""
+    },
+    "items": [{
+      "item_name": "Bucket",
+      "isMurderWeapon": true
+    }],
+    "adjacent_rooms": ["Silo"],
+    "possibleDirections": ["Southwest"]
+  }]
+}

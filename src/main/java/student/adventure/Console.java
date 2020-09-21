@@ -13,9 +13,8 @@ public class Console {
   /**
    * Instantiates Console and its variables
    *
-   * @throws FileNotFoundException if file directory is invalid
    */
-  public Console(String directory, boolean random) throws FileNotFoundException {
+  public Console(String directory, boolean random) throws IllegalArgumentException{
     if (directory == null) {
       throw new IllegalArgumentException();
     }
@@ -77,7 +76,7 @@ public class Console {
   private boolean doAction() {
     String output = eng.isValidCommand(inputAction, secondInput);
     //asks for a new input if passed action was invalid
-    while (!output.equals("Success") && !inputAction.equals("speak") && !output.equals("correct")
+    while (!output.equals("") && !inputAction.equals("speak") && !output.equals("correct")
         && !output.equals("fail") && !output.equals("try again")) {
       if (output.equals("quit") || output.equals("exit")) {
         return true;

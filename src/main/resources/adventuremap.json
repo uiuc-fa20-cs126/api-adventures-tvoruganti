@@ -1,4 +1,5 @@
 {
+  "backgroundStory" :"It's a sunny summer morning. The air is humid and the ground is damp from last night's rainfall. \nThe wind is strong. It would be very dangerous to do anything outside in this weather. \nThe farm is filled with activity, everyone does their job as if nothing ever happened...\nYou start walking towards the farm to speak with security.\nSecurity Guard: Detective! Thank you for coming to our farm. Let me update you on the situation.\nLast night, an inspector arrived to do an annual check up to make sure all regulations were being followed.\nHe was found dead in the middle of the farm last night. All the suspects should be around the farm.\nVisit them and other locations and bring me the murder weapon. Good Luck!",
   "rooms": [{
     "room_name": "Farmhouse",
     "person": {

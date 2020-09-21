@@ -1,0 +1,91 @@
+{
+  "rooms": [{
+    "room_name": "Farmhouse",
+    "person": {
+      "name": "Farmer's Wife",
+      "dialogue": "This breakfast is looking good!"
+    },
+    "items": [{
+      "item_name": "Knife",
+      "isMurderWeapon": false
+    }],
+    "adjacent_rooms": ["Barn", "Silo", "Security", "Chickencoop", "Field"]
+  }, {
+    "room_name": "Barn",
+    "person": {
+      "name": "Farmer's Son",
+      "dialogue": "I got the most boring job again!"
+    },
+    "items": [{
+      "item_name": "Pitchfork",
+      "isMurderWeapon": false
+    }],
+    "adjacent_rooms": ["Farmhouse", "Chickencoop", "Security"]
+  }, {
+    "room_name": "Chickencoop",
+    "person": {
+      "name": "Farmer's Daughter",
+      "dialogue": "Eggs are my favorite!"
+    },
+    "items": [{
+      "item_name": "Egg",
+      "isMurderWeapon": false
+    }],
+    "adjacent_rooms": ["Barn", "Farmhouse", "Security", "Slaughterhouse", "Well"]
+  }, {
+    "room_name": "Slaughterhouse",
+    "person": {
+      "name": "Butcher",
+      "dialogue": "The chickens are looking good today!"
+    },
+    "items": [{
+      "item_name": "Axe",
+      "isMurderWeapon": false
+    }],
+    "adjacent_rooms": ["Chickencoop", "Well", "Security"]
+  }, {
+    "room_name": "Well",
+    "person": {
+      "name": "Neighbor",
+      "dialogue": "I just need some water for my crops!"
+    },
+    "items": [{
+      "item_name": "Bucket",
+      "isMurderWeapon": true
+    }],
+    "adjacent_rooms": ["Slaughterhouse", "Chickencoop", "Security", "Stable", "Field"]
+  }, {
+    "room_name": "Stable",
+    "person": {
+      "name": "Horsekeeper",
+      "dialogue": "Time to wash the horses!"
+    },
+    "items": [{
+      "item_name": "Horseshoe",
+      "isMurderWeapon": false
+    }],
+    "adjacent_rooms": ["Field", "Security", "Well"]
+  }, {
+    "room_name": "Field",
+    "person": {
+      "name": "Farmer",
+      "dialogue": "The crops are looking healthy today!"
+    },
+    "items": [{
+      "item_name": "Tractor",
+      "isMurderWeapon": false
+    }],
+    "adjacent_rooms": ["Stable", "Silo", "Security", "Well", "Farmhouse"]
+  }
+    {
+      "room_name": "Silo",
+      "person": {
+        "name": "Farmer's Assistant",
+        "dialogue": "The stored grain is ready to be sold!"
+      },
+      "items": [{
+          "item_name": "Multitool"
+        }]
+
+    }]
+    }

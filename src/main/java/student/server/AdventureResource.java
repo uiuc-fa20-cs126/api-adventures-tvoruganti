@@ -3,6 +3,7 @@ package student.server;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.sql.SQLException;
 
 @Path("/")
 public class AdventureResource {
@@ -100,7 +101,7 @@ public class AdventureResource {
     @GET
     @Path("leaderboard")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response fetchLeaderboard() {
+    public Response fetchLeaderboard(){
         return Response.ok(service.fetchLeaderboard()).build();
     }
 

@@ -20,12 +20,10 @@ public class AdventureState {
 
   private String currentRoom;
   private int falseGuesses;
-  private String inventory;
 
-  public AdventureState(String currRoom,  int fG, String inv) {
+  public AdventureState(String currRoom,  int fG) {
     currentRoom = currRoom;
     falseGuesses = fG;
-    inventory = inv;
   }
 
   public String getCurrentRoom() {

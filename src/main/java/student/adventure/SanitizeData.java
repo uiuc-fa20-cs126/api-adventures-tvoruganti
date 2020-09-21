@@ -11,6 +11,7 @@ public class SanitizeData {
   private final Map<String, Room> roomList;
   private Rooms tempRMS;
   private String currRoom;
+  private String backgroundStory;
 
   public SanitizeData(String directory, boolean randomize) {
     if (directory == null) {
@@ -25,6 +26,7 @@ public class SanitizeData {
       System.out.println("FileNotFoundException");
     }
     List<Room> rooms = tempRMS.getRooms();
+    backgroundStory = tempRMS.getBackgroundStory();
     currRoom = rooms.get(rooms.size() - 1).getName().toLowerCase();
     if (randomize) { //randomizes which item and person are the murder culprits
       int randomIndex = (int) (Math.random() * (rooms.size() - 1));
@@ -43,5 +45,9 @@ public class SanitizeData {
 
   public String getCurrRoom(){
     return currRoom;
+  }
+
+  public String getBackgroundStory() {
+    return backgroundStory;
   }
 }

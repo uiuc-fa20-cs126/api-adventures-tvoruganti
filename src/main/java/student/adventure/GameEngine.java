@@ -35,16 +35,8 @@ public class GameEngine {
     startingInv = new ArrayList<>();
     falseGuesses = 0;
     //Story for the game, printed only once at beginning of the game
-    backgroundStory =
-        "It's a sunny summer morning. The air is humid and the ground is damp from last night's rainfall."
-            + "\nThe wind is strong. It would be very dangerous to do anything outside in this weather."
-            + "\nThe farm is filled with activity, everyone does their job as if nothing ever happened..."
-            + "\nYou start walking towards the farm to speak with security."
-            + "\nSecurity Guard: Detective! Thank you for coming to our farm. Let me update you on the situation."
-            + "\nLast night, an inspector arrived to do an annual check up to make sure all regulations were being followed."
-            + "\nHe was found dead in the middle of the farm last night. All the suspects should be around the farm."
-            + "\nVisit them and other locations and bring me the murder weapon. Good Luck!";
-    startingState = new AdventureState(currRoom, falseGuesses, "");
+    backgroundStory = deserializer.getBackgroundStory();
+    startingState = new AdventureState(currRoom, falseGuesses);
   }
 
   /**
@@ -85,7 +77,7 @@ public class GameEngine {
    * @return String that represents the result of trying to drop the item.
    */
   private String dropItem(String item) {
-    if (inventory.size() == 0) {
+    if (inventory.isEmpty()) {
       return "You have nothing to drop!";
     }
     int itemPos = isItemValid(item, inventory);//finds if item is in the inventory
@@ -95,7 +87,7 @@ public class GameEngine {
     } else {
       return "That is an invalid item!";
     }
-    return "Success";
+    return "";
   }
 
   /**
@@ -121,7 +113,7 @@ public class GameEngine {
    * @return String that represents the result of trying to take the item.
    */
   private String takeItem(String item) {
-    if (roomList.get(currRoom).getItems().size() == 0) {
+    if (roomList.get(currRoom).getItems().isEmpty()) {
       return "There are no items to take!";
     }
     //finds if item is in the inventory
@@ -132,7 +124,7 @@ public class GameEngine {
     } else {
       return "That is an invalid item!";
     }
-    return "Success";
+    return "";
   }
 
   /**
@@ -164,7 +156,7 @@ public class GameEngine {
     } else {
       return "You can't go in that direction!";
     }
-    return "Success";
+    return "";
   }
 
   /**
@@ -181,9 +173,6 @@ public class GameEngine {
     }
     //keeps track of how many times the player has failed to find the murder weapon
     falseGuesses++;
-    if (falseGuesses >= 3) {
-      return "fail";
-    }
     return "try again";
   }
 
@@ -193,12 +182,12 @@ public class GameEngine {
    * @return all information player needs
    */
   public String examine() {
-    return "You are at the " + roomList.get(currRoom).getName() + "\n" +
-        "You can talk to the " + roomList.get(currRoom).getPerson().getName() + "\n" +
-        "Items in room: " + roomList.get(currRoom).getItems().toString() + "\n" +
-        "Items in your inventory: " + inventory.toString() + "\n" +
+    return "You are at the " + roomList.get(currRoom).getName() + ".\n" +
+        "You can talk to the " + roomList.get(currRoom).getPerson().getName() + ".\n" +
+        "Items in room: " + roomList.get(currRoom).getItems().toString() + ".\n" +
+        "Items in your inventory: " + inventory.toString() + ".\n" +
         "You can go in these directions: " + roomList.get(currRoom).getPossibleDirections()
-        .toString();
+        .toString() + ".";
   }
 
   //returns dialogue of person in the current room
@@ -248,7 +237,7 @@ public class GameEngine {
     falseGuesses = currState.getFalseGuesses();
     String message = isValidCommand(command.getCommandName().toLowerCase(),
         command.getCommandValue().toLowerCase());
-    AdventureState newState = new AdventureState(currRoom, falseGuesses, inventory.toString());
+    AdventureState newState = new AdventureState(currRoom, falseGuesses);
     return new GameStatus(false, currGameStatus.getId(), message, "", "",
         newState, getCommandOptions(), inventory, roomList);
   }
@@ -275,8 +264,6 @@ public class GameEngine {
         .put("take", listItemtoString(roomList.get(currRoom).getItems()));
     return commandOptions;
   }
-
-
 }
 
 
