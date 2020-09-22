@@ -89,7 +89,7 @@ public class MyGameService implements AdventureService {
         GameStatus newGameStatus = engine.executeCommand(gamesList.get(id), command);
         gamesList.replace(id, newGameStatus);
         if (newGameStatus.getMessage().equals("correct")) {
-            insertToDatabase(command.getPlayerName(), newGameStatus.getState().getFalseGuesses());
+            insertIntoDatabase(command.getPlayerName(), newGameStatus.getState().getFalseGuesses());
         }
     }
 
@@ -99,7 +99,7 @@ public class MyGameService implements AdventureService {
      * @param newName  name to insert with entry
      * @param newScore score to insert with entry
      */
-    private void insertToDatabase(String newName, int newScore) {
+    private void insertIntoDatabase(String newName, int newScore) {
         try {
             Statement stmt = dbConnection.createStatement();
             String sql = "INSERT INTO leaderboard_tvorug2 (name, score) VALUES ('" + newName + "', " + newScore + ")";

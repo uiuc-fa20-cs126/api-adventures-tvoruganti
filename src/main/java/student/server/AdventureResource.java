@@ -14,6 +14,7 @@ public class AdventureResource {
 
     /**
      * The API endpoint to test connectivity.
+     *
      * @return the string "pong" if connection was successful
      */
     @GET
@@ -25,6 +26,7 @@ public class AdventureResource {
 
     /**
      * The API endpoint to clear all instances of the adventure game.
+     *
      * @return a success response
      */
     @POST
@@ -36,6 +38,7 @@ public class AdventureResource {
 
     /**
      * The API endpoint to create a new instance of the adventure game.
+     *
      * @return the state of the newly created game
      * @throws AdventureException if a game could not be created
      */
@@ -49,6 +52,7 @@ public class AdventureResource {
 
     /**
      * The API endpoint to query the state of a game instance.
+     *
      * @param id the ID of the game instance
      * @return a valid game state if found; an error response if not found
      */
@@ -65,6 +69,7 @@ public class AdventureResource {
 
     /**
      * The API endpoint to delete an instance of a game.
+     *
      * @param id the ID of the game instance to destroy
      * @return whether the operation was a success
      */
@@ -81,7 +86,8 @@ public class AdventureResource {
 
     /**
      * The API endpoint to handle a command issued to the game engine.
-     * @param id the ID of the game instance currently being played
+     *
+     * @param id      the ID of the game instance currently being played
      * @param command the command issued by the client
      * @return the result of the issued command
      */
@@ -96,17 +102,19 @@ public class AdventureResource {
 
     /**
      * The API endpoint to return an ordered mapping of players to "high" scores.
+     *
      * @return a response with a sorted map of "high" scores
      */
     @GET
     @Path("leaderboard")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response fetchLeaderboard(){
+    public Response fetchLeaderboard() {
         return Response.ok(service.fetchLeaderboard()).build();
     }
 
     /**
      * Helper method to build an `instanceNotFound` error.
+     *
      * @param id the instance ID
      */
     private Response instanceNotFound(int id) {

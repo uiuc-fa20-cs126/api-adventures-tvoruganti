@@ -1,12 +1,15 @@
 package student.adventure;
 
-import java.io.FileNotFoundException;
-
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-
+import java.util.*;
 import org.junit.Before;
 import org.junit.Test;
+import student.server.AdventureState;
+import student.server.Command;
+import student.server.GameStatus;
+
+import static org.junit.Assert.*;
 
 public class AdventureTest {
 
@@ -48,6 +51,36 @@ public class AdventureTest {
     public void testInvalidGoToRoom() {
         String toAssert = "You can't go in that direction!";
         assertThat(eng.isValidCommand("go", "north"), is(toAssert));
+    }
+
+    @Test
+    public void testWordBeforeAction() {
+        String toAssert = "I don't know what that action means!";
+        assertThat(eng.isValidCommand("nogo", "north"), is(toAssert));
+    }
+
+    @Test
+    public void testWordAfterAction() {
+        String toAssert = "I don't know what that action means!";
+        assertThat(eng.isValidCommand("goto", "north"), is(toAssert));
+    }
+
+    @Test
+    public void testEdgeCaseCaps() {
+        String toAssert = "";
+        assertThat(eng.isValidCommand("gO", "soUthWEst"), is(toAssert));
+    }
+
+    @Test
+    public void testEdgeCaseSpace() {
+        String toAssert = "";
+        assertThat(eng.isValidCommand(" go ", " southwest "), is(toAssert));
+    }
+
+    @Test
+    public void testEdgeCaseSpaceAndCaps() {
+        String toAssert = "";
+        assertThat(eng.isValidCommand(" gO ", " SoUThWEst "), is(toAssert));
     }
 
     @Test
@@ -123,6 +156,36 @@ public class AdventureTest {
                 "Items in your inventory: []." + "\n" +
                 "You can go in these directions: [Southwest].";
         assertThat(eng.isValidCommand("examine", "room"), is(toAssert));
+    }
+
+    @Test
+    public void testGetCommandOptions() {
+        Map<String, List<String>> expected = new HashMap<>();
+        List<String> empty = new ArrayList<>();
+        empty.add("");
+        List<String> goPlace = new ArrayList<>();
+        goPlace.add("Southwest");
+        expected.put("go", goPlace);
+        expected.put("examine", empty);
+        expected.put("speak", empty);
+        List<String> checkWin = new ArrayList<>();
+        checkWin.add("win");
+        expected.put("check", checkWin);
+        expected.put("drop", new ArrayList<>());
+        List<String> toTake = new ArrayList<>();
+        toTake.add("Bucket");
+        expected.put("take", toTake);
+        assertEquals(eng.getCommandOptions(), expected);
+    }
+
+    @Test
+    public void testExecuteCommand() {
+        List<Item> items = new ArrayList<>();
+        items.add(new Item("Bucket", true));
+        AdventureState state = new AdventureState("security", 0);
+        GameStatus currStatus = new GameStatus(false, 0, "", "", "", state, eng.getCommandOptions(), items, eng.getStartingRoomList());
+        Command command = new Command("check", "win");
+        assertThat(eng.executeCommand(currStatus, command).getMessage(), is("correct"));
     }
 }
 
