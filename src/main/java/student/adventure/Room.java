@@ -9,13 +9,18 @@ public class Room {
     private final List<Item> items;
     private final List<String> adjacent_rooms;
     private final List<String> possibleDirections;
+    private final String imageURL;
+    private final String soundURL;
 
-    public Room(String roomname, Person ppl, List<Item> item, List<String> rooms, List<String> pD) {
+
+    public Room(String roomname, Person ppl, List<Item> item, List<String> rooms, List<String> pD, String imageURL, String soundURL) {
         room_name = roomname;
         person = ppl;
         items = item;
         adjacent_rooms = rooms;
         possibleDirections = pD;
+        this.imageURL = imageURL;
+        this.soundURL = soundURL;
     }
 
     public String getName() {
@@ -36,5 +41,13 @@ public class Room {
 
     public List<String> getPossibleDirections() {
         return possibleDirections;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public String getSoundURL() {
+        return soundURL;
     }
 }

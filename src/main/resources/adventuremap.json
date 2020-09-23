@@ -1,118 +1,260 @@
 {
-  "backgroundStory" :"It's a sunny summer morning. The air is humid and the ground is damp from last night's rainfall. \nThe wind is strong. It would be very dangerous to do anything outside in this weather. \nThe farm is filled with activity, everyone does their job as if nothing ever happened...\nYou start walking towards the farm to speak with security.\nSecurity Guard: Detective! Thank you for coming to our farm. Let me update you on the situation.\nLast night, an inspector arrived to do an annual check up to make sure all regulations were being followed.\nHe was found dead in the middle of the farm last night. All the suspects should be around the farm.\nVisit them and other locations and bring me the murder weapon. Good Luck!",
-  "rooms": [{
-    "room_name": "Farmhouse",
-    "person": {
-      "name": "Farmer's Wife",
-      "dialogue": "This breakfast is looking good!",
-      "guiltyDialogue": "I just collected these delicious eggs!"
+  "backgroundStory": "It's a sunny summer morning. The air is humid and the ground is damp from last night's rainfall. \nThe wind is strong. It would be very dangerous to do anything outside in this weather. \nThe farm is filled with activity, everyone does their job as if nothing ever happened...\nYou start walking towards the farm to speak with security.\nSecurity Guard: Detective! Thank you for coming to our farm. Let me update you on the situation.\nLast night, an inspector arrived to do an annual check up to make sure all regulations were being followed.\nHe was found dead in the middle of the farm last night. All the suspects should be around the farm.\nVisit them and other locations and bring me the murder weapon. Good Luck!",
+  "rooms": [
+    {
+      "room_name": "Farmhouse",
+      "person": {
+        "name": "Farmer's Wife",
+        "dialogue": "This breakfast is looking good!",
+        "guiltyDialogue": "I just collected these delicious eggs!"
+      },
+      "imageURL": "https://i.pinimg.com/originals/3a/01/83/3a018343ae728ec74380f0fa208d4e7a.jpg",
+      "soundURL": "https://www.youtube.com/watch?v=84s4B2AVTEE&ab_channel=VyletPony",
+      "items": [
+        {
+          "item_name": "Knife",
+          "isMurderWeapon": false
+        }
+      ],
+      "adjacent_rooms": [
+        "Barn",
+        "Silo",
+        "Security",
+        "Chickencoop",
+        "Field"
+      ],
+      "possibleDirections": [
+        "North",
+        "South",
+        "East",
+        "Northeast",
+        "Southeast"
+      ]
     },
-    "items": [{
-      "item_name": "Knife",
-      "isMurderWeapon": false
-    }],
-    "adjacent_rooms": ["Barn", "Silo", "Security", "Chickencoop", "Field"],
-    "possibleDirections": ["North", "South", "East", "Northeast", "Southeast"]
-  }, {
-    "room_name": "Barn",
-    "person": {
-      "name": "Farmer's Son",
-      "dialogue": "I got the most boring job again!",
-      "guiltyDialogue": "I'm just getting some wood for the fire!"
+    {
+      "room_name": "Barn",
+      "person": {
+        "name": "Farmer's Son",
+        "dialogue": "I got the most boring job again!",
+        "guiltyDialogue": "I'm just getting some wood for the fire!"
+      },
+      "imageURL": "https://s3.amazonaws.com/newhobbyfarms.com/wp-content/uploads/2009/02/18104250/better-barn_istock-thinkstock.jpg",
+      "soundURL": "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstleyVEVO",
+      "items": [
+        {
+          "item_name": "Pitchfork",
+          "isMurderWeapon": false
+        }
+      ],
+      "adjacent_rooms": [
+        "Farmhouse",
+        "Chickencoop",
+        "Security"
+      ],
+      "possibleDirections": [
+        "South",
+        "East",
+        "Southeast"
+      ]
     },
-    "items": [{
-      "item_name": "Pitchfork",
-      "isMurderWeapon": false
-    }],
-    "adjacent_rooms": ["Farmhouse", "Chickencoop", "Security"],
-    "possibleDirections": ["South", "East", "Southeast"]
-  }, {
-    "room_name": "Chickencoop",
-    "person": {
-      "name": "Farmer's Daughter",
-      "dialogue": "Don't wake up the hens while I collect their eggs!",
-      "guiltyDialogue": "Just cleaning the chicken coop!"
+    {
+      "room_name": "Chickencoop",
+      "person": {
+        "name": "Farmer's Daughter",
+        "dialogue": "Don't wake up the hens while I collect their eggs!",
+        "guiltyDialogue": "Just cleaning the chicken coop!"
+      },
+      "imageURL": "https://i.pinimg.com/originals/54/ff/d0/54ffd0b389939241c6dc955a8e34d3cf.jpg",
+      "soundURL": "https://www.youtube.com/watch?v=y6120QOlsfU&ab_channel=Darude",
+      "items": [
+        {
+          "item_name": "Egg",
+          "isMurderWeapon": false
+        }
+      ],
+      "adjacent_rooms": [
+        "Barn",
+        "Farmhouse",
+        "Security",
+        "Slaughterhouse",
+        "Well"
+      ],
+      "possibleDirections": [
+        "West",
+        "Southwest",
+        "South",
+        "East",
+        "Southeast"
+      ]
     },
-    "items": [{
-      "item_name": "Egg",
-      "isMurderWeapon": false
-    }],
-    "adjacent_rooms": ["Barn", "Farmhouse", "Security", "Slaughterhouse", "Well"],
-    "possibleDirections": ["West", "Southwest", "South","East","Southeast"]
-  }, {
-    "room_name": "Slaughterhouse",
-    "person": {
-      "name": "Butcher",
-      "dialogue": "The chickens are looking good today!",
-      "guiltyDialogue": "I'm going to go get some chickens!"
+    {
+      "room_name": "Slaughterhouse",
+      "person": {
+        "name": "Butcher",
+        "dialogue": "The chickens are looking good today!",
+        "guiltyDialogue": "I'm going to go get some chickens!"
+      },
+      "imageURL": "https://images-na.ssl-images-amazon.com/images/I/71QcX1DbklL.jpg",
+      "soundURL": "https://youtu.be/PfYnvDL0Qcw?t=28",
+      "items": [
+        {
+          "item_name": "Axe",
+          "isMurderWeapon": false
+        }
+      ],
+      "adjacent_rooms": [
+        "Chickencoop",
+        "Well",
+        "Security"
+      ],
+      "possibleDirections": [
+        "West",
+        "South",
+        "Southwest"
+      ]
     },
-    "items": [{
-      "item_name": "Axe",
-      "isMurderWeapon": false
-    }],
-    "adjacent_rooms": ["Chickencoop", "Well", "Security"],
-    "possibleDirections": ["West", "South", "Southwest"]
-  }, {
-    "room_name": "Well",
-    "person": {
-      "name": "Neighbor",
-      "dialogue": "Just returning this bucket I borrowed!",
-      "guiltyDialogue": "I just need some water for my crops!"
+    {
+      "room_name": "Well",
+      "person": {
+        "name": "Neighbor",
+        "dialogue": "Just returning this bucket I borrowed!",
+        "guiltyDialogue": "I just need some water for my crops!"
+      },
+      "imageURL": "https://i.pinimg.com/originals/a3/d7/db/a3d7dbb1eb1ca789debc8483ffaff993.jpg",
+      "soundURL": "https://youtu.be/BJ0xBCwkg3E?t=24",
+      "items": [
+        {
+          "item_name": "Bucket",
+          "isMurderWeapon": false
+        }
+      ],
+      "adjacent_rooms": [
+        "Slaughterhouse",
+        "Chickencoop",
+        "Security",
+        "Stable",
+        "Field"
+      ],
+      "possibleDirections": [
+        "North",
+        "Northwest",
+        "West",
+        "South",
+        "Southwest"
+      ]
     },
-    "items": [{
-      "item_name": "Bucket",
-      "isMurderWeapon": false
-    }],
-    "adjacent_rooms": ["Slaughterhouse", "Chickencoop", "Security", "Stable", "Field"],
-    "possibleDirections": ["North", "Northwest", "West","South","Southwest"]
-  }, {
-    "room_name": "Stable",
-    "person": {
-      "name": "Horsekeeper",
-      "dialogue": "Time to groom the horses!",
-      "guiltyDialogue": "I'm taking the horses out for a bit!"
+    {
+      "room_name": "Stable",
+      "person": {
+        "name": "Horsekeeper",
+        "dialogue": "Time to groom the horses!",
+        "guiltyDialogue": "I'm taking the horses out for a bit!"
+      },
+      "imageURL": "https://preview.redd.it/9kficddkedu41.png?auto=webp&s=79f390d054ccf7839e3c99556ab38dd2a4185f18",
+      "soundURL": "https://youtu.be/SDTZ7iX4vTQ?t=30",
+      "items": [
+        {
+          "item_name": "Horseshoe",
+          "isMurderWeapon": false
+        }
+      ],
+      "adjacent_rooms": [
+        "Field",
+        "Security",
+        "Well"
+      ],
+      "possibleDirections": [
+        "West",
+        "Northwest",
+        "North"
+      ]
     },
-    "items": [{
-      "item_name": "Horseshoe",
-      "isMurderWeapon": false
-    }],
-    "adjacent_rooms": ["Field", "Security", "Well"],
-    "possibleDirections": ["West", "Northwest", "North"]
-  }, {
-    "room_name": "Field",
-    "person": {
-      "name": "Farmer",
-      "dialogue": "I would harvest the crops but it's too windy!",
-      "guiltyDialogue": "Time to harvest the crops!"
+    {
+      "room_name": "Field",
+      "person": {
+        "name": "Farmer",
+        "dialogue": "I would harvest the crops but it's too windy!",
+        "guiltyDialogue": "Time to harvest the crops!"
+      },
+      "imageURL": "https://www.land.com/wp-content/uploads/2018/06/tractor-on-farm_shutterstock_692043769.jpg",
+      "soundURL": "https://www.youtube.com/watch?v=d-JBBNg8YKs&ab_channel=TravisScottVEVO",
+      "items": [
+        {
+          "item_name": "Tractor",
+          "isMurderWeapon": false
+        }
+      ],
+      "adjacent_rooms": [
+        "Stable",
+        "Silo",
+        "Security",
+        "Well",
+        "Farmhouse"
+      ],
+      "possibleDirections": [
+        "East",
+        "West",
+        "North",
+        "Northeast",
+        "Northwest"
+      ]
     },
-    "items": [{
-      "item_name": "Tractor",
-      "isMurderWeapon": false
-    }],
-    "adjacent_rooms": ["Stable", "Silo", "Security", "Well", "Farmhouse"],
-    "possibleDirections": ["East", "West", "North","Northeast","Northwest"]
-  }, {
-    "room_name": "Silo",
-    "person": {
-      "name": "Farmer's Assistant",
-      "dialogue": "The stored grain is ready to be sold!",
-      "guiltyDialogue": "Let's get this grain to the market!"
+    {
+      "room_name": "Silo",
+      "person": {
+        "name": "Farmer's Assistant",
+        "dialogue": "The stored grain is ready to be sold!",
+        "guiltyDialogue": "Let's get this grain to the market!"
+      },
+      "imageURL": "https://i.pinimg.com/originals/7c/cd/d8/7ccdd8213907f353d013ba8f64aa2b65.jpg",
+      "soundURL": "https://www.youtube.com/watch?v=cPJUBQd-PNM&ab_channel=CaptainSparklez",
+      "items": [
+        {
+          "item_name": "Multitool",
+          "isMurderWeapon": false
+        }
+      ],
+      "adjacent_rooms": [
+        "Farmhouse",
+        "Field",
+        "Security"
+      ],
+      "possibleDirections": [
+        "North",
+        "East",
+        "Northeast"
+      ]
     },
-    "items": [{
-      "item_name": "Multitool",
-      "isMurderWeapon": false
-    }],
-    "adjacent_rooms": ["Farmhouse", "Field", "Security"],
-    "possibleDirections": ["North", "East", "Northeast"]
-  }, {
-    "room_name": "Security",
-    "person": {
-      "name": "Security Guard",
-      "dialogue": "Have you found the weapon?",
-      "guiltyDialogue": ""
-    },
-    "items": [],
-    "adjacent_rooms": ["Farmhouse", "Field", "Stable","Barn","Chickencoop","Slaughterhouse","Silo","Well"],
-    "possibleDirections": ["West", "South", "Southeast","Northwest","North","Northeast","Southwest","East"]
-  }]
+    {
+      "room_name": "Security",
+      "person": {
+        "name": "Security Guard",
+        "dialogue": "Have you found the weapon?",
+        "guiltyDialogue": ""
+      },
+      "imageURL": "https://i.ytimg.com/vi/Proyk88ombI/maxresdefault.jpg",
+      "soundURL": "https://youtu.be/L_jWHffIx5E?t=37",
+      "items": [],
+      "adjacent_rooms": [
+        "Farmhouse",
+        "Field",
+        "Stable",
+        "Barn",
+        "Chickencoop",
+        "Slaughterhouse",
+        "Silo",
+        "Well"
+      ],
+      "possibleDirections": [
+        "West",
+        "South",
+        "Southeast",
+        "Northwest",
+        "North",
+        "Northeast",
+        "Southwest",
+        "East"
+      ]
+    }
+  ]
 }

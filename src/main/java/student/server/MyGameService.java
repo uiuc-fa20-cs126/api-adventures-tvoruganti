@@ -42,7 +42,7 @@ public class MyGameService implements AdventureService {
     public int newGame() throws AdventureException {
         try {
             GameStatus newGame = new GameStatus(false, idCounter, engine.getBackgroundStory(),
-                    "", "", engine.getStartingState(), engine.getCommandOptions(), engine.getStartingInv(),
+                    engine.getImageURL(), engine.getSoundURL(), engine.getStartingState(), engine.getCommandOptions(), engine.getStartingInv(),
                     engine.getStartingRoomList());
             gamesList.put(idCounter, newGame);
         } catch (Exception e) {
@@ -116,7 +116,7 @@ public class MyGameService implements AdventureService {
      */
     @Override
     public Map<String, Integer> fetchLeaderboard() {
-        Map<String, Integer> leaderboard = new HashMap<>();
+        Map<String, Integer> leaderboard = new LinkedHashMap<>();
         String query = "SELECT name, score FROM leaderboard_tvorug2 ORDER BY Score ASC";
         try {
             Statement stmt = dbConnection.createStatement();

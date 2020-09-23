@@ -216,6 +216,14 @@ public class GameEngine {
         return startingRoomList;
     }
 
+    public String getImageURL() {
+        return roomList.get(currRoom).getImageURL();
+    }
+
+    public String getSoundURL() {
+        return roomList.get(currRoom).getSoundURL();
+    }
+
     //returns list of item names give a list of items
     private List<String> listItemtoString(List<Item> items) {
         List<String> itemsToStrings = new ArrayList<>();
@@ -241,7 +249,7 @@ public class GameEngine {
         String message = isValidCommand(command.getCommandName().toLowerCase(),
                 command.getCommandValue().toLowerCase());
         AdventureState newState = new AdventureState(currRoom, falseGuesses);
-        return new GameStatus(false, currGameStatus.getId(), message, "", "",
+        return new GameStatus(false, currGameStatus.getId(), message, roomList.get(currRoom).getImageURL(), roomList.get(currRoom).getSoundURL(),
                 newState, getCommandOptions(), inventory, roomList);
     }
 
